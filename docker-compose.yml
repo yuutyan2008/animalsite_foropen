@@ -1,0 +1,45 @@
+# warning発生のため削除
+# version: "3.9"
+
+services:
+  # 1. Webサーバー (Nginx)
+  web:
+    image: nginx:alpine
+    platform: linux/arm64
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html # ホスト：コンテナ　のマウント設定
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+
+  # 2. アプリケーション実行環境 (PHP 8.2)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: linux/arm64
+    volumes:
+      - ./src:/var/www/html
+      - ./xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    depends_on:
+      - db
+
+  # 3. データベース (MySQL 8.0)
+  db:
+    image: mysql:8.0
+    platform: linux/arm64
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-laravel_db}
+      MYSQL_USER: ${MYSQL_USER:-dbuser}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+
+# ボリューム名を指定して、削除後のデータも保持
+volumes:
+  db-data:

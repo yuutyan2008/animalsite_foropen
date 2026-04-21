@@ -1,0 +1,22 @@
+
+
+# Laravel関連 (src/ の中にあるものを指定)
+src/.env
+src/vendor/
+src/node_modules/
+src/public/storage
+src/storage/*.key
+src/storage/framework/cache/data/*
+src/storage/framework/sessions/*
+src/storage/framework/views/*
+src/storage/logs/*.log
+
+# OS関連
+.DS_Store
+
+# 開発環境ファイル
+.vscode/
+.env.docker
+.claude/
+xdebug.ini
+src/xdebug.log
