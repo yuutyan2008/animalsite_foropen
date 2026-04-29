@@ -1,8 +1,7 @@
 # Solvedience（ソルベディエンス）
 
 犬や猫をめぐる社会問題を理解する目的のサイトです。規定のテーマに関するユーザーの投稿機能があります。
-
-🌐 **公開サイト**: [https://animal-portal-u47f.onrender.com](https://animal-portal-u47f.onrender.com)
+ **公開サイト**: [https://animal-portal-u47f.onrender.com](https://animal-portal-u47f.onrender.com)
 
 
 ---
